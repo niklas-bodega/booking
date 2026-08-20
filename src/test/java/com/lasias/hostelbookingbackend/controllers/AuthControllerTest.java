@@ -1,9 +1,5 @@
 package com.lasias.hostelbookingbackend.controllers;
 
-import com.lasias.hostelbookingbackend.dtos.AuthRequestDTO;
-import com.lasias.hostelbookingbackend.models.AppUser;
-import com.lasias.hostelbookingbackend.repositories.AppUserRepository;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package com.lasias.hostelbookingbackend.repositories;
 
 import com.lasias.hostelbookingbackend.enums.BookingStatus;
-import com.lasias.hostelbookingbackend.models.AppUser;
 import com.lasias.hostelbookingbackend.models.BookingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,12 +1,5 @@
 package com.lasias.hostelbookingbackend.controllers;
 
-import com.lasias.hostelbookingbackend.dtos.RegisterNewUserDTO;
-import com.lasias.hostelbookingbackend.dtos.UserInformationDTO;
-import com.lasias.hostelbookingbackend.models.AppUser;
-import com.lasias.hostelbookingbackend.dtos.UpdateUserDTO;
-import com.lasias.hostelbookingbackend.repositories.AppUserRepository;
-import com.lasias.hostelbookingbackend.services.AppUserService;
-import com.lasias.hostelbookingbackend.services.JwtService;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

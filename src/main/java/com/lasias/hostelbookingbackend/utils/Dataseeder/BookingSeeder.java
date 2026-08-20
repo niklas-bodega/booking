@@ -2,10 +2,8 @@ package com.lasias.hostelbookingbackend.utils.Dataseeder;
 
 import com.lasias.hostelbookingbackend.config.BookingConstants;
 import com.lasias.hostelbookingbackend.enums.BookingStatus;
-import com.lasias.hostelbookingbackend.models.AppUser;
 import com.lasias.hostelbookingbackend.models.BookingEntity;
 import com.lasias.hostelbookingbackend.models.RoomEntity;
-import com.lasias.hostelbookingbackend.repositories.AppUserRepository;
 import com.lasias.hostelbookingbackend.repositories.BookingRepository;
 import com.lasias.hostelbookingbackend.repositories.RoomRepository;
 import lombok.RequiredArgsConstructor;

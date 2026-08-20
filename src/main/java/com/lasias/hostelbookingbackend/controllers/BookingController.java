@@ -3,7 +3,6 @@ package com.lasias.hostelbookingbackend.controllers;
 import com.lasias.hostelbookingbackend.dtos.BookingResponseDTO;
 import com.lasias.hostelbookingbackend.dtos.CreateBookingRequestDTO;
 import com.lasias.hostelbookingbackend.dtos.UpdateBookingRequestDTO;
-import com.lasias.hostelbookingbackend.models.AppUser;
 import com.lasias.hostelbookingbackend.services.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

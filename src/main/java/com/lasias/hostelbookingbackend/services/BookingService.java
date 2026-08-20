@@ -7,7 +7,6 @@ import com.lasias.hostelbookingbackend.dtos.RoomResponseDTO;
 import com.lasias.hostelbookingbackend.dtos.UpdateBookingRequestDTO;
 import com.lasias.hostelbookingbackend.enums.BookingStatus;
 import com.lasias.hostelbookingbackend.exceptions.NoAvailableRoomException;
-import com.lasias.hostelbookingbackend.models.AppUser;
 import com.lasias.hostelbookingbackend.models.BookingEntity;
 import com.lasias.hostelbookingbackend.models.RoomEntity;
 import com.lasias.hostelbookingbackend.repositories.BookingRepository;

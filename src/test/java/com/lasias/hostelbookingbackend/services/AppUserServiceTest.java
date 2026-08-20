@@ -1,20 +1,12 @@
 package com.lasias.hostelbookingbackend.services;
 
-import com.lasias.hostelbookingbackend.dtos.AuthRequestDTO;
-import com.lasias.hostelbookingbackend.dtos.RegisterNewUserDTO;
-import com.lasias.hostelbookingbackend.models.AppUser;
-import com.lasias.hostelbookingbackend.repositories.AppUserRepository;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.resttestclient.TestRestTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
