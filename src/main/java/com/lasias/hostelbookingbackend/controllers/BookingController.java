@@ -61,4 +61,10 @@ public class BookingController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/active/{id}")
+    public ResponseEntity<Boolean> hasActiveBookings(@PathVariable Long userId) {
+        boolean response = bookingService.hasActiveBookings(userId);
+        return ResponseEntity.ok(response);
+    }
 }
