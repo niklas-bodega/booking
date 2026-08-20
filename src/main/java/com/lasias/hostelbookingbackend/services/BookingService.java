@@ -32,45 +32,41 @@ public class BookingService {
         this.roomRepository = roomRepository;
     }
 
-//TODO change to UserId
+    @Transactional
+    public BookingResponseDTO createBooking(CreateBookingRequestDTO request, Long userId) {
+        validateBookingDates(request.getCheckInDate(), request.getCheckOutDate());
+        LocalDateTime checkIn = request.getCheckInDate().atTime(BookingConstants.CHECK_IN_TIME);
+        LocalDateTime checkOut = request.getCheckOutDate().atTime(BookingConstants.CHECK_OUT_TIME);
 
-//    @Transactional
-//    public BookingResponseDTO createBooking(CreateBookingRequestDTO request, AppUser user) {
-//        validateBookingDates(request.getCheckInDate(), request.getCheckOutDate());
-//        LocalDateTime checkIn = request.getCheckInDate().atTime(BookingConstants.CHECK_IN_TIME);
-//        LocalDateTime checkOut = request.getCheckOutDate().atTime(BookingConstants.CHECK_OUT_TIME);
-//
-//        RoomEntity room = roomRepository.findAvailableByRoomTypeId(
-//                        request.getRoomTypeId(),
-//                        checkIn,
-//                        checkOut,
-//                        request.isExtraBed()
-//                )
-//                .stream()
-//                .findFirst()
-//                .orElseThrow(() -> new NoAvailableRoomException("No available room found for selected room type and dates"));
-//
-//        BookingEntity booking = new BookingEntity(
-//                user,
-//                room,
-//                checkIn,
-//                checkOut,
-//                request.isExtraBed()
-//        );
-//
-//        BookingEntity savedBooking = bookingRepository.save(booking);
-//
-//        return toResponseDTO(savedBooking);
-//    }
+        RoomEntity room = roomRepository.findAvailableByRoomTypeId(
+                        request.getRoomTypeId(),
+                        checkIn,
+                        checkOut,
+                        request.isExtraBed()
+                )
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new NoAvailableRoomException("No available room found for selected room type and dates"));
 
-//TODO change to UserId
+        BookingEntity booking = new BookingEntity(
+                userId,
+                room,
+                checkIn,
+                checkOut,
+                request.isExtraBed()
+        );
 
-//    public List<BookingResponseDTO> getBookingsByUser(AppUser user) {
-//        return bookingRepository.findByUser(user)
-//                .stream()
-//                .map(this::toResponseDTO)
-//                .toList();
-//    }
+        BookingEntity savedBooking = bookingRepository.save(booking);
+
+        return toResponseDTO(savedBooking);
+    }
+
+    public List<BookingResponseDTO> getBookingsByUserId(Long userId) {
+        return bookingRepository.findByUserId(userId)
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
+    }
 
     public BookingResponseDTO getBookingByBookingNumber(String bookingNumber) {
         BookingEntity booking = findBookingByBookingNumber(bookingNumber);

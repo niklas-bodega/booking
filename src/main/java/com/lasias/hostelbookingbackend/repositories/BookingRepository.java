@@ -10,13 +10,11 @@ import java.util.Optional;
 
 public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
 
-//TODO change to UserId
-
-//    List<BookingEntity> findByUser(AppUser user);
+    List<BookingEntity> findByUserId(Long userId);
 
     Optional<BookingEntity> findByBookingNumber(String bookingNumber);
 
-    boolean existsByUser_IdAndStatusInAndCheckOutDateAfter(
+    boolean existsByUserIdAndStatusInAndCheckOutDateAfter(
             Long userId,
             List<BookingStatus> statuses,
             LocalDateTime now
