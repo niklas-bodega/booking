@@ -157,7 +157,9 @@ public class BookingService {
 
 
     public boolean hasActiveBookings(Long userId) {
-        return bookingRepository.findByUserId(userId).stream().anyMatch(booking -> booking.getStatus()
-                == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.AWAITING_CONFIRMATION);
+        return bookingRepository.existsByUser_IdAndStatusInAndCheckOutDateAfter(
+                userId,
+                List.of(BookingStatus.CONFIRMED, BookingStatus.AWAITING_CONFIRMATION),
+                LocalDateTime.now());
     }
 }

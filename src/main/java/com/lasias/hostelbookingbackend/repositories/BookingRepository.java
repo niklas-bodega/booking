@@ -14,7 +14,7 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
 
     Optional<BookingEntity> findByBookingNumber(String bookingNumber);
 
-    boolean existsByUserIdAndStatusInAndCheckOutDateAfter(
+    boolean existsByUser_IdAndStatusInAndCheckOutDateAfter(
             Long userId,
             List<BookingStatus> statuses,
             LocalDateTime now
