@@ -21,23 +21,26 @@ public class BookingController {
     }
 
 
+//TODO Change AppUser to UserId or jwt token
 
-    @PostMapping
-    public ResponseEntity<BookingResponseDTO> createBooking(
-            @RequestBody CreateBookingRequestDTO request,
-            @AuthenticationPrincipal AppUser user
-    ) {
-        BookingResponseDTO response = bookingService.createBooking(request, user);
+//    @PostMapping
+//    public ResponseEntity<BookingResponseDTO> createBooking(
+//            @RequestBody CreateBookingRequestDTO request,
+//            AuthenticationPrincipal AppUser user
+//    ) {
+//        BookingResponseDTO response = bookingService.createBooking(request, user);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//    }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
+//TODO Change AppUser to UserId or jwt token
 
-    @GetMapping("/my")
-    public ResponseEntity<List<BookingResponseDTO>> getMyBookings(@AuthenticationPrincipal AppUser user) {
-        List<BookingResponseDTO> response = bookingService.getBookingsByUser(user);
-
-        return ResponseEntity.ok(response);
-    }
+//    @GetMapping("/my")
+//    public ResponseEntity<List<BookingResponseDTO>> getMyBookings(@AuthenticationPrincipal AppUser user) {
+//        List<BookingResponseDTO> response = bookingService.getBookingsByUser(user);
+//
+//        return ResponseEntity.ok(response);
+//    }
 
     @GetMapping("/{bookingNumber}")
     public ResponseEntity<BookingResponseDTO> getBookingByBookingNumber(@PathVariable String bookingNumber) {
