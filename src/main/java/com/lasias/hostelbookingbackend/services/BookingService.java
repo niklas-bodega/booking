@@ -157,7 +157,7 @@ public class BookingService {
 
 
     public boolean hasActiveBookings(Long userId) {
-        return bookingRepository.existsByUser_IdAndStatusInAndCheckOutDateAfter(
+        return bookingRepository.existsByUserIdAndStatusInAndCheckOutDateAfter(
                 userId,
                 List.of(BookingStatus.CONFIRMED, BookingStatus.AWAITING_CONFIRMATION),
                 LocalDateTime.now());
