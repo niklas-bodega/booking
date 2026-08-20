@@ -10,7 +10,9 @@ import java.util.Optional;
 
 public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
 
-    List<BookingEntity> findByUser(AppUser user);
+//TODO change to UserId
+
+//    List<BookingEntity> findByUser(AppUser user);
 
     Optional<BookingEntity> findByBookingNumber(String bookingNumber);
 

@@ -32,41 +32,45 @@ public class BookingService {
         this.roomRepository = roomRepository;
     }
 
-    @Transactional
-    public BookingResponseDTO createBooking(CreateBookingRequestDTO request, AppUser user) {
-        validateBookingDates(request.getCheckInDate(), request.getCheckOutDate());
-        LocalDateTime checkIn = request.getCheckInDate().atTime(BookingConstants.CHECK_IN_TIME);
-        LocalDateTime checkOut = request.getCheckOutDate().atTime(BookingConstants.CHECK_OUT_TIME);
+//TODO change to UserId
 
-        RoomEntity room = roomRepository.findAvailableByRoomTypeId(
-                        request.getRoomTypeId(),
-                        checkIn,
-                        checkOut,
-                        request.isExtraBed()
-                )
-                .stream()
-                .findFirst()
-                .orElseThrow(() -> new NoAvailableRoomException("No available room found for selected room type and dates"));
+//    @Transactional
+//    public BookingResponseDTO createBooking(CreateBookingRequestDTO request, AppUser user) {
+//        validateBookingDates(request.getCheckInDate(), request.getCheckOutDate());
+//        LocalDateTime checkIn = request.getCheckInDate().atTime(BookingConstants.CHECK_IN_TIME);
+//        LocalDateTime checkOut = request.getCheckOutDate().atTime(BookingConstants.CHECK_OUT_TIME);
+//
+//        RoomEntity room = roomRepository.findAvailableByRoomTypeId(
+//                        request.getRoomTypeId(),
+//                        checkIn,
+//                        checkOut,
+//                        request.isExtraBed()
+//                )
+//                .stream()
+//                .findFirst()
+//                .orElseThrow(() -> new NoAvailableRoomException("No available room found for selected room type and dates"));
+//
+//        BookingEntity booking = new BookingEntity(
+//                user,
+//                room,
+//                checkIn,
+//                checkOut,
+//                request.isExtraBed()
+//        );
+//
+//        BookingEntity savedBooking = bookingRepository.save(booking);
+//
+//        return toResponseDTO(savedBooking);
+//    }
 
-        BookingEntity booking = new BookingEntity(
-                user,
-                room,
-                checkIn,
-                checkOut,
-                request.isExtraBed()
-        );
+//TODO change to UserId
 
-        BookingEntity savedBooking = bookingRepository.save(booking);
-
-        return toResponseDTO(savedBooking);
-    }
-
-    public List<BookingResponseDTO> getBookingsByUser(AppUser user) {
-        return bookingRepository.findByUser(user)
-                .stream()
-                .map(this::toResponseDTO)
-                .toList();
-    }
+//    public List<BookingResponseDTO> getBookingsByUser(AppUser user) {
+//        return bookingRepository.findByUser(user)
+//                .stream()
+//                .map(this::toResponseDTO)
+//                .toList();
+//    }
 
     public BookingResponseDTO getBookingByBookingNumber(String bookingNumber) {
         BookingEntity booking = findBookingByBookingNumber(bookingNumber);

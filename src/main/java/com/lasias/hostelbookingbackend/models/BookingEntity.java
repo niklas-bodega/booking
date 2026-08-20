@@ -23,8 +23,10 @@ public class BookingEntity {
     @Enumerated(EnumType.STRING)
     private BookingStatus status = BookingStatus.CONFIRMED;
 
-    @ManyToOne
-    private AppUser user;
+    //TODO Change to UserId
+
+//    @ManyToOne
+//    private AppUser user;
 
     @ManyToOne
     private RoomEntity room;
@@ -32,20 +34,22 @@ public class BookingEntity {
     public BookingEntity() {
     }
 
-    public BookingEntity(
-            AppUser user,
-            RoomEntity room,
-            LocalDateTime checkInDate,
-            LocalDateTime checkOutDate,
-            boolean extraBed
-    ) {
-        this.user = user;
-        this.room = room;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.extraBed = extraBed;
-        this.status = BookingStatus.CONFIRMED;
-    }
+    //TODO Change to UserId
+
+//    public BookingEntity(
+//            AppUser user,
+//            RoomEntity room,
+//            LocalDateTime checkInDate,
+//            LocalDateTime checkOutDate,
+//            boolean extraBed
+//    ) {
+//        this.user = user;
+//        this.room = room;
+//        this.checkInDate = checkInDate;
+//        this.checkOutDate = checkOutDate;
+//        this.extraBed = extraBed;
+//        this.status = BookingStatus.CONFIRMED;
+//    }
 
     public Long getId() {
         return id;
@@ -71,9 +75,11 @@ public class BookingEntity {
         return status;
     }
 
-    public AppUser getUser() {
-        return user;
-    }
+    //TODO Change to UserId
+
+//    public AppUser getUser() {
+//        return user;
+//    }
 
     public RoomEntity getRoom() {
         return room;
@@ -103,9 +109,11 @@ public class BookingEntity {
         this.status = status;
     }
 
-    public void setUser(AppUser user) {
-        this.user = user;
-    }
+    //TODO Change to UserId
+
+//    public void setUser(AppUser user) {
+//        this.user = user;
+//    }
 
     public void setRoom(RoomEntity room) {
         this.room = room;
