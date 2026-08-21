@@ -6,6 +6,7 @@ import com.lasias.hostelbookingbackend.dtos.UpdateBookingRequestDTO;
 import com.lasias.hostelbookingbackend.services.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -63,6 +64,7 @@ public class BookingController {
     }
 
     @GetMapping("/active/{id}")
+    @PreAuthorize( "hasRole('ADMIN')")
     public ResponseEntity<Boolean> hasActiveBookings(@PathVariable Long userId) {
         boolean response = bookingService.hasActiveBookings(userId);
         return ResponseEntity.ok(response);
