@@ -35,7 +35,7 @@ public class SecurityConfig {
                         }))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
-                            "/api/rooms"
+                            "/api/rooms/**"
                     ).permitAll();
 
                     auth.anyRequest().authenticated();
