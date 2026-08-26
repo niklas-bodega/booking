@@ -28,7 +28,6 @@ public class BookingSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("###############################################################");
         if (bookingRepository.count() == 0) {
             bookingRepository.saveAll(bookingsToAdd());
             log.info("Successfully added {} bookings.",bookingsToAdd().size());
