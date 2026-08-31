@@ -33,8 +33,8 @@ public class BookingController {
     }
 
     @GetMapping("/my")
-    public ResponseEntity<List<BookingResponseDTO>> getMyBookings(@AuthenticationPrincipal Long userId) {
-        List<BookingResponseDTO> response = bookingService.getBookingsByUserId(userId);
+    public ResponseEntity<List<BookingResponseDTO>> getMyBookings(@AuthenticationPrincipal CustomPrincipal principal) {
+        List<BookingResponseDTO> response = bookingService.getBookingsByUserId(principal.userID());
 
         return ResponseEntity.ok(response);
     }
