@@ -2,6 +2,7 @@ package com.lasias.hostelbookingbackend.controllers;
 
 import com.lasias.hostelbookingbackend.dtos.BookingResponseDTO;
 import com.lasias.hostelbookingbackend.dtos.CreateBookingRequestDTO;
+import com.lasias.hostelbookingbackend.dtos.CustomPrincipal;
 import com.lasias.hostelbookingbackend.dtos.UpdateBookingRequestDTO;
 import com.lasias.hostelbookingbackend.services.BookingService;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,9 @@ public class BookingController {
     @PostMapping
     public ResponseEntity<BookingResponseDTO> createBooking(
             @RequestBody CreateBookingRequestDTO request,
-            @AuthenticationPrincipal Long userId
-    ) {
-        BookingResponseDTO response = bookingService.createBooking(request, userId);
+            @AuthenticationPrincipal CustomPrincipal principal
+            ) {
+        BookingResponseDTO response = bookingService.createBooking(request, principal.userID());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
