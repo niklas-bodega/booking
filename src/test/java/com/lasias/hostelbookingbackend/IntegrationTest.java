@@ -16,10 +16,12 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Testcontainers
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 @Transactional
 public class IntegrationTest {
 
@@ -52,6 +54,13 @@ public class IntegrationTest {
 
     @Test
     void testIntegration() {
+
         assertTrue(true);
+    }
+
+    @Test
+    void shouldGetRooms() throws Exception {
+        mockMvc.perform(get("/api/rooms"))
+                .andExpect(status().isOk());
     }
 }
