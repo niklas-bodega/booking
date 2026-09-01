@@ -1,7 +1,6 @@
 package com.lasias.hostelbookingbackend.services;
 
 import com.lasias.hostelbookingbackend.dtos.AvailableRoomsDTO;
-import com.lasias.hostelbookingbackend.dtos.RoomTypeDTO;
 import com.lasias.hostelbookingbackend.enums.RoomBadge;
 import com.lasias.hostelbookingbackend.models.RoomType;
 import com.lasias.hostelbookingbackend.repositories.RoomTypeRepository;
