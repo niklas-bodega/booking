@@ -52,8 +52,7 @@ public class IntegrationTest {
     @Autowired
     private RoomTypeRepository roomTypeRepository;
 
-    @Autowired
-    private BookingRepository bookingRepository;
+
 
     @Autowired
     private RoomRepository roomRepository;
@@ -87,7 +86,7 @@ public class IntegrationTest {
     }
 
     @Test
-    void roomTypeByIdFromCreatedData() throws Exception {
+    void shouldGetRoomTypeByIdFromCreatedData() throws Exception {
 
         RoomType roomType = RoomType.builder()
                 .name("Test name")
