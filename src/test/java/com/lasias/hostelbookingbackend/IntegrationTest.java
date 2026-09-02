@@ -1,5 +1,6 @@
 package com.lasias.hostelbookingbackend;
 
+import com.lasias.hostelbookingbackend.enums.RoomBadge;
 import com.lasias.hostelbookingbackend.models.RoomEntity;
 import com.lasias.hostelbookingbackend.models.RoomType;
 import com.lasias.hostelbookingbackend.repositories.BookingRepository;
@@ -22,8 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Testcontainers
@@ -59,12 +58,6 @@ public class IntegrationTest {
     @Autowired
     private RoomRepository roomRepository;
 
-    @Test
-    void testIntegration() {
-
-        assertTrue(true);
-    }
-
     //Room Type Integration Test
 
     @Test
@@ -85,6 +78,40 @@ public class IntegrationTest {
     }
 
     @Test
+    void shouldGetRoomTypeById() throws Exception {
+
+        Long roomTypeId = 1L;
+
+        mockMvc.perform(get("/api/rooms/roomTypes/{id}", roomTypeId))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void roomTypeByIdFromCreatedData() throws Exception {
+
+        RoomType roomType = RoomType.builder()
+                .name("Test name")
+                .type("test type")
+                .description("test desc")
+                .price(9000.0)
+                .size(9000)
+                .capacity(1)
+                .extraBedAvailable(false)
+                .badge(RoomBadge.SUITE)
+                .featured(false)
+                .imageUrl("https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=1200")
+                .build();
+
+        roomType = roomTypeRepository.save(roomType);
+
+        mockMvc.perform(get("/api/rooms/roomTypes/{id}", roomType.getId()))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(roomType.getId()))
+                .andExpect(jsonPath("$.name").value("Test name"));
+    }
+
+    @Test
     void shouldCheckRoomTypeAvailability() throws Exception {
 
         Long roomTypeId = 1L;
@@ -93,15 +120,6 @@ public class IntegrationTest {
                         .param("checkInDate", "2026-10-10")
                         .param("checkOutDate", "2026-10-12")
                         .param("bookingNumber", "test-booking"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void shouldGetRoomTypeById() throws Exception {
-
-        Long roomTypeId = 1L;
-
-        mockMvc.perform(get("/api/rooms/roomTypes/{id}", roomTypeId))
                 .andExpect(status().isOk());
     }
 
