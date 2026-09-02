@@ -32,6 +32,7 @@ public class BookingService {
         this.roomRepository = roomRepository;
     }
 
+    //TODO lägga till REST anrop mot User-service för kontroll att kunden fortfarande existerar.
     @Transactional
     public BookingResponseDTO createBooking(CreateBookingRequestDTO request, Long userId) {
         validateBookingDates(request.getCheckInDate(), request.getCheckOutDate());
