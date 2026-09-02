@@ -3,7 +3,6 @@ package com.lasias.hostelbookingbackend;
 import com.lasias.hostelbookingbackend.enums.RoomBadge;
 import com.lasias.hostelbookingbackend.models.RoomEntity;
 import com.lasias.hostelbookingbackend.models.RoomType;
-import com.lasias.hostelbookingbackend.repositories.BookingRepository;
 import com.lasias.hostelbookingbackend.repositories.RoomRepository;
 import com.lasias.hostelbookingbackend.repositories.RoomTypeRepository;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
