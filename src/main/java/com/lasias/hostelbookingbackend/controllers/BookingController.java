@@ -65,7 +65,7 @@ public class BookingController {
     }
 
     //TODO change path, id gets taken from authPrinc
-    @GetMapping("/active/{id}")
+    @GetMapping("/active")
     public ResponseEntity<Boolean> hasActiveBookings(@AuthenticationPrincipal CustomPrincipal principal) {
         boolean response = bookingService.hasActiveBookings(principal.userID());
         return ResponseEntity.ok(response);
