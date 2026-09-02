@@ -64,11 +64,9 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/active/{id}")
-    @PreAuthorize( "hasRole('ADMIN')")
-    public ResponseEntity<Boolean> hasActiveBookings(@PathVariable Long userId) {
-        //todo ändra till @AuthenticationPrincipal~ annars kan user id vara vad som helst
-        boolean response = bookingService.hasActiveBookings(userId);
+    @GetMapping("/active")
+    public ResponseEntity<Boolean> hasActiveBookings(@AuthenticationPrincipal CustomPrincipal principal) {
+        boolean response = bookingService.hasActiveBookings(principal.userID());
         return ResponseEntity.ok(response);
     }
 }
