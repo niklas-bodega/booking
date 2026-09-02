@@ -1,10 +1,7 @@
 package com.lasias.hostelbookingbackend.services;
 
 import com.lasias.hostelbookingbackend.config.BookingConstants;
-import com.lasias.hostelbookingbackend.dtos.BookingResponseDTO;
-import com.lasias.hostelbookingbackend.dtos.CreateBookingRequestDTO;
-import com.lasias.hostelbookingbackend.dtos.RoomResponseDTO;
-import com.lasias.hostelbookingbackend.dtos.UpdateBookingRequestDTO;
+import com.lasias.hostelbookingbackend.dtos.*;
 import com.lasias.hostelbookingbackend.enums.BookingStatus;
 import com.lasias.hostelbookingbackend.exceptions.NoAvailableRoomException;
 import com.lasias.hostelbookingbackend.models.BookingEntity;
@@ -14,6 +11,7 @@ import com.lasias.hostelbookingbackend.repositories.RoomRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,18 +21,29 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final RoomRepository roomRepository;
+    private final UserServiceClient userServiceClient;
 
     public BookingService(
             BookingRepository bookingRepository,
-            RoomRepository roomRepository
+            RoomRepository roomRepository,
+            UserServiceClient userServiceClient
     ) {
         this.bookingRepository = bookingRepository;
         this.roomRepository = roomRepository;
+        this.userServiceClient = userServiceClient;
     }
 
-    //TODO lägga till REST anrop mot User-service för kontroll att kunden fortfarande existerar.
+    private boolean userExists(CustomPrincipal principal) {
+        return userServiceClient.isUserExists(principal.jwtBearerToken());
+    }
+
     @Transactional
-    public BookingResponseDTO createBooking(CreateBookingRequestDTO request, Long userId) {
+    public BookingResponseDTO createBooking(CreateBookingRequestDTO request, CustomPrincipal principal) throws UserPrincipalNotFoundException {
+        boolean userExists = userExists(principal);
+
+        if (!userExists) {
+            throw new UserPrincipalNotFoundException("User not found");
+        }
         validateBookingDates(request.getCheckInDate(), request.getCheckOutDate());
         LocalDateTime checkIn = request.getCheckInDate().atTime(BookingConstants.CHECK_IN_TIME);
         LocalDateTime checkOut = request.getCheckOutDate().atTime(BookingConstants.CHECK_OUT_TIME);
@@ -50,7 +59,7 @@ public class BookingService {
                 .orElseThrow(() -> new NoAvailableRoomException("No available room found for selected room type and dates"));
 
         BookingEntity booking = new BookingEntity(
-                userId,
+                principal.userID(),
                 room,
                 checkIn,
                 checkOut,

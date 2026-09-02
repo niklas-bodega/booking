@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 @RestController
@@ -26,8 +28,8 @@ public class BookingController {
     public ResponseEntity<BookingResponseDTO> createBooking(
             @RequestBody CreateBookingRequestDTO request,
             @AuthenticationPrincipal CustomPrincipal principal
-            ) {
-        BookingResponseDTO response = bookingService.createBooking(request, principal.userID());
+            ) throws UserPrincipalNotFoundException {
+        BookingResponseDTO response = bookingService.createBooking(request, principal);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
