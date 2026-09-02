@@ -156,7 +156,6 @@ public class BookingService {
     }
 
 
-    //TODO should UserId be wiped from booking repo or should it remain and Users personal information be wiped from User repo
     public boolean hasActiveBookings(Long userId) {
         return bookingRepository.existsByUserIdAndStatusInAndCheckOutDateAfter(
                 userId,
