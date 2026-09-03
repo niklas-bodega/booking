@@ -42,6 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         } else {
             jwt = jwtCookie.getValue();
+            bearerToken = "Bearer " + jwt;
         }
         final Long userId;
         try {

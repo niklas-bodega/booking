@@ -15,9 +15,10 @@ public class UserServiceClient {
 
     //get on /api/user with jwt will return 401 unauth if user does not exist and return 200 if exists
     public boolean isUserExists(String jwt) {
+        System.out.println("inside isUserExists method withing UserServiceClient");
         return userRestClient.get()
                 .uri("/api/user")
-                .header("Authorization", "Bearer " + jwt)
+                .header("Authorization", jwt)
                 .retrieve()
                 .toBodilessEntity()
                 .getStatusCode()
