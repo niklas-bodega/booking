@@ -37,12 +37,10 @@ public class BookingService {
         return userServiceClient.isUserExists(principal.jwtBearerToken());
     }
 
-    //TODO debug
     @Transactional
     public BookingResponseDTO createBooking(CreateBookingRequestDTO request, CustomPrincipal principal) throws UserPrincipalNotFoundException {
-        //boolean userExists = userExists(principal);
-        // todo laga ovan metod som ballar ur!
-        boolean userExists = true;
+        boolean userExists = userExists(principal);
+
         if (!userExists) {
             throw new UserPrincipalNotFoundException("User not found");
         }
