@@ -17,7 +17,7 @@ public class UserServiceClient {
     public boolean isUserExists(String jwt) {
         return userRestClient.get()
                 .uri("/api/user")
-                .header("Authorization", "Bearer " + jwt)
+                .header("Authorization", jwt)
                 .retrieve()
                 .toBodilessEntity()
                 .getStatusCode()
